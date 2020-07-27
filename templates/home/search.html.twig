@@ -91,54 +91,66 @@
 {% endmacro %}
 {% macro setGases(iaqi) %}
     <div class="container mt-2 pr-3 pl-3 border rounded">
-        <div class="row  p-3">
-            <div class="col-6">
-                <h6>PM2.5</h6>
+        {% if iaqi.pm25.v is defined %}
+            <div class="row  p-3">
+                <div class="col-6">
+                    <h6>PM2.5</h6>
+                </div>
+                <div class="col-6">
+                    <h6>{{iaqi.pm25.v}}</h6>
+                </div>
             </div>
-            <div class="col-6">
-                <h6>{{iaqi.pm25.v}}</h6>
+        {% endif %}
+        {% if iaqi.pm10.v is defined %}
+            <div class="row border-top p-3">
+                <div class="col-6">
+                    <h6>PM10</h6>
+                </div>
+                <div class="col-6">
+                    <h6>{{iaqi.pm10.v}}</h6>
+                </div>
             </div>
-        </div>
-        <div class="row border-top p-3">
-            <div class="col-6">
-                <h6>PM10</h6>
+        {% endif %}
+        {% if iaqi.o3.v is defined %}
+            <div class="row border-top p-3">
+                <div class="col-6">
+                    <h6>03</h6>
+                </div>
+                <div class="col-6">
+                    <h6>{{iaqi.o3.v}}</h6>
+                </div>
+            </div>        
+        {% endif %}
+        {% if iaqi.no2.v is defined %}
+            <div class="row border-top p-3">
+                <div class="col-6">
+                    <h6>NO2</h6>
+                </div>
+                <div class="col-6">
+                    <h6>{{iaqi.no2.v}}</h6>
+                </div>
             </div>
-            <div class="col-6">
-                <h6>{{iaqi.pm10.v}}</h6>
+        {% endif %}
+        {% if iaqi.so2.v is defined %}
+            <div class="row border-top p-3">
+                <div class="col-6">
+                    <h6>SO2</h6>
+                </div>
+                <div class="col-6">
+                    <h6>{{iaqi.so2.v}}</h6>
+                </div>
             </div>
-        </div>
-        <div class="row border-top p-3">
-            <div class="col-6">
-                <h6>03</h6>
+        {% endif %}
+        {% if iaqi.co.v is defined %}
+            <div class="row border-top p-3">
+                <div class="col-6">
+                    <h6>CO</h6>
+                </div>
+                <div class="col-6">
+                    <h6>{{iaqi.co.v}}</h6>
+                </div>
             </div>
-            <div class="col-6">
-                <h6>{{iaqi.o3.v}}</h6>
-            </div>
-        </div>
-        <div class="row border-top p-3">
-            <div class="col-6">
-                <h6>NO2</h6>
-            </div>
-            <div class="col-6">
-                <h6>{{iaqi.no2.v}}</h6>
-            </div>
-        </div>
-        <div class="row border-top p-3">
-            <div class="col-6">
-                <h6>SO2</h6>
-            </div>
-            <div class="col-6">
-                <h6>{{iaqi.so2.v}}</h6>
-            </div>
-        </div>
-        <div class="row border-top p-3">
-            <div class="col-6">
-                <h6>CO</h6>
-            </div>
-            <div class="col-6">
-                <h6>{{iaqi.co.v}}</h6>
-            </div>
-        </div>
+        {% endif %}
     </div>
 {% endmacro %}
 {% macro setWeather(iaqi) %}
