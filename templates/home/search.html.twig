@@ -1,0 +1,216 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% macro airQualityDescription(aqi, color) %}
+    {% if aqi <= 50 %}
+        {{_self.airPollutionStatus(
+            'Good', 
+            'Air quality is considered satisfactory, and air pollution poses little or no risk',
+            'None',
+            color
+        )}}
+    {% elseif aqi >= 50 and aqi < 100 %}
+        {{_self.airPollutionStatus(
+            'Moderate',
+            'Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.',
+            'Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.',
+            color
+        )}}
+    {% elseif aqi >= 100 and aqi < 150 %}
+        {{_self.airPollutionStatus(
+            'Unhealthy for Sensitive Groups',
+            'Members of sensitive groups may experience health effects. The general public is not likely to be affected.',
+            'Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.',
+            color
+        )}}
+    {% elseif aqi >= 150 and aqi < 200 %}
+        {{_self.airPollutionStatus(
+            'Unhealthy',
+            'Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects',
+            'Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion',
+            color
+        )}}
+    {% elseif aqi >= 200 and aqi < 300 %}
+        {{_self.airPollutionStatus(
+            'Very Unhealthy',
+            'Health warnings of emergency conditions. The entire population is more likely to be affected.',
+            'Active children and adults, and people with respiratory disease, such as asthma, should avoid all outdoor exertion; everyone else, especially children, should limit outdoor exertion.',
+            color
+        )}}
+    {% elseif aqi >= 300 and aqi < 500 %}
+        {{_self.airPollutionStatus(
+            'Hazardous',
+            'Health alert: everyone may experience more serious health effects',
+            'Everyone should avoid all outdoor exertion',
+            color
+        )}}
+    {% endif %}
+{% endmacro %}
+{% macro airPollutionStatus(airPollutionLevel, healthImplication, cautionaryStatement, color) %}
+    <div class="container text-white border rounded" style="background-color: {{color|trim}}">
+        <div class="row border-bottom rounded pb-3 pt-3">
+            <div class="col-3 font-weight-bold">
+                Air Pollution Level
+            </div>
+            <div class="col-5 font-weight-bold">
+                Health Implications
+            </div>
+            <div class="col-4 font-weight-bold">
+                Cautionary Statement (for PM2.5)
+            </div>
+        </div>
+        <div class="row border-0 rounded pb-4 pt-4">
+            <div class="col-3">
+                {{airPollutionLevel}}
+            </div>
+            <div class="col-5">
+                {{healthImplication}}
+            </div>
+            <div class="col-4">
+                {{cautionaryStatement}}
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+{% macro airQualityColorSetter(aqi) %}
+    {% if aqi <= 50 %}
+        {% set color = '#449A66' %}
+    {% elseif aqi >= 50 and aqi < 100 %}
+        {% set color = '#1DA488' %}
+    {% elseif aqi >= 100 and aqi < 150 %}
+        {% set color = '#F99932' %}
+    {% elseif aqi >= 150 and aqi < 200 %}
+        {% set color = '#CE3B34' %}
+    {% elseif aqi >= 200 and aqi < 300 %}
+        {% set color = '#6A4299' %}
+    {% elseif aqi >= 300 and aqi < 500 %}
+        {% set color = '#7F2223' %}
+    {% endif %}
+    {{color}}
+{% endmacro %}
+{% macro setGases(iaqi) %}
+    <div class="container mt-2 pr-3 pl-3 border rounded">
+        <div class="row  p-3">
+            <div class="col-6">
+                <h6>PM2.5</h6>
+            </div>
+            <div class="col-6">
+                <h6>{{iaqi.pm25.v}}</h6>
+            </div>
+        </div>
+        <div class="row border-top p-3">
+            <div class="col-6">
+                <h6>PM10</h6>
+            </div>
+            <div class="col-6">
+                <h6>{{iaqi.pm10.v}}</h6>
+            </div>
+        </div>
+        <div class="row border-top p-3">
+            <div class="col-6">
+                <h6>03</h6>
+            </div>
+            <div class="col-6">
+                <h6>{{iaqi.o3.v}}</h6>
+            </div>
+        </div>
+        <div class="row border-top p-3">
+            <div class="col-6">
+                <h6>NO2</h6>
+            </div>
+            <div class="col-6">
+                <h6>{{iaqi.no2.v}}</h6>
+            </div>
+        </div>
+        <div class="row border-top p-3">
+            <div class="col-6">
+                <h6>SO2</h6>
+            </div>
+            <div class="col-6">
+                <h6>{{iaqi.so2.v}}</h6>
+            </div>
+        </div>
+        <div class="row border-top p-3">
+            <div class="col-6">
+                <h6>CO</h6>
+            </div>
+            <div class="col-6">
+                <h6>{{iaqi.co.v}}</h6>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+{% macro setWeather(iaqi) %}
+    <div class="container mt-2 pr-3 pl-3 border rounded">
+        <div class="row p-2">
+            <div class="col-12">
+                <h4>Weather data</h4>
+            </div>
+        </div>
+         <div class="row border-top p-3">
+            <div class="col-6">
+                <h6>Pressure</h6>
+            </div>
+            <div class="col-6">
+                <h6>{{iaqi.p.v}} PA</h6>
+            </div>
+        </div>
+        <div class="row border-top p-3">
+            <div class="col-6">
+                <h6>Temperature</h6>
+            </div>
+            <div class="col-6">
+                <h6>{{iaqi.t.v}} ºC</h6>
+            </div>
+        </div>
+        <div class="row border-top p-3">
+            <div class="col-6">
+                <h6>Air humidity</h6>
+            </div>
+            <div class="col-6">
+                <h6>{{iaqi.h.v}}%</h6>
+            </div>
+        </div>
+        <div class="row border-top p-3">
+            <div class="col-6">
+                <h6>Wind</h6>
+            </div>
+            <div class="col-6">
+                <h6>{{iaqi.w.v}} km/h</h6>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+{% block body %}
+    {{dump(object)}}
+    {% if object.status == "ok" %}
+        <div class="">
+            {% set color = _self.airQualityColorSetter(object.data.aqi)%}
+            <div class="d-flex mb-2">
+                <div class="text-white p-5 mr-3 border rounded" style="background-color: {{color|trim}}">
+                    <h1 class="">{{object.data.aqi}}</h1>
+                </div>
+                <div class="align-middle my-auto w-100">
+                    <h1 class="align-middle my-auto ">{{object.data.city.name}}</h1>
+                    <br>
+                    <em class="">Updated at {{object.data.time.s}}</em>
+                </div>
+            </div>
+            {{_self.airQualityDescription(object.data.aqi, color)}}
+
+            {{_self.setGases(object.data.iaqi)}}
+            {{_self.setWeather(object.data.iaqi)}}
+        </div>
+
+        <div class="">
+            <em>Source from: <a class="text-decoration-none" href="{{object.data.city.url}}">{{object.data.city.url}}</a></em>
+        </div>
+    {% elseif object.status == "error" %}
+        <div class="text-center">
+            <h1> ERROR CITY NOT FOUND </h1>
+            <em>Message: {{object.data}}</em>
+        </div>
+    {% endif %}
+    
+{% endblock %}
