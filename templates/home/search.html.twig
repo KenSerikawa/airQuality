@@ -185,7 +185,7 @@
 {% block body %}
     {# {{dump(object)}} #}
     {% if object.status == "ok" %}
-        <div class="">
+        <div class="container">
             {% set color = _self.airQualityColorSetter(object.data.aqi)%}
             <div class="d-flex mb-2">
                 <div class="text-white p-5 mr-3 border rounded" style="background-color: {{color|trim}}">
@@ -198,13 +198,9 @@
                 </div>
             </div>
             {{_self.airQualityDescription(object.data.aqi, color)}}
-
             {{_self.setGases(object.data.iaqi)}}
             {{_self.setWeather(object.data.iaqi)}}
-        </div>
-
-        <div class="">
-            <em>Source from: <a class="text-decoration-none" href="{{object.data.city.url}}">{{object.data.city.url}}</a></em>
+            <em class="float-right mt-3">Source from: <a class="text-decoration-none" href="{{object.data.city.url}}">{{object.data.city.url}}</a></em>
         </div>
     {% elseif object.status == "error" %}
         <div class="text-center">
@@ -212,5 +208,4 @@
             <em>Message: {{object.data}}</em>
         </div>
     {% endif %}
-    
 {% endblock %}
