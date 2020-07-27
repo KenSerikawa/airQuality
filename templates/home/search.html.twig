@@ -183,7 +183,7 @@
     </div>
 {% endmacro %}
 {% block body %}
-    {{dump(object)}}
+    {# {{dump(object)}} #}
     {% if object.status == "ok" %}
         <div class="">
             {% set color = _self.airQualityColorSetter(object.data.aqi)%}
