@@ -212,7 +212,12 @@
             {{_self.airQualityDescription(object.data.aqi, color)}}
             {{_self.setGases(object.data.iaqi)}}
             {{_self.setWeather(object.data.iaqi)}}
-            <em class="float-right mt-3">Source from: <a class="text-decoration-none" href="{{object.data.city.url}}">{{object.data.city.url}}</a></em>
+            <em class="float-right mt-3 mb-5">
+                Source from: 
+                <a class="text-decoration-none" 
+                    href="{{object.data.city.url}}">{{object.data.city.url}}
+                </a>
+            </em>
         </div>
     {% elseif object.status == "error" %}
         <div class="text-center">
