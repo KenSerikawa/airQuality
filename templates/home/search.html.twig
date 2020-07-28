@@ -1,7 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{% endblock %}
-
+{% macro displayMain(object, color) %}
+     <div class="d-flex mb-2">
+        <div class="text-white p-5 mr-3 border rounded" style="background-color: {{color|trim}}">
+            <h1 class="">{{object.data.aqi}}</h1>
+        </div>
+        <div class="align-middle my-auto w-100">
+            <h1 class="align-middle my-auto ">{{object.data.city.name}}</h1>
+            <br>
+            <em class="">Updated at {{object.data.time.s}}</em>
+        </div>
+    </div>
+{% endmacro %}
 {% macro airQualityDescription(aqi, color) %}
     {% if aqi <= 50 %}
         {{_self.airPollutionStatus(
@@ -194,30 +205,24 @@
         </div>
     </div>
 {% endmacro %}
+{% macro displayUrlSource(city) %}
+     <em class="float-right mt-3 mb-5">
+        Source from: 
+        <a class="text-decoration-none" 
+            href="{{city}}">{{city}}
+        </a>
+    </em>
+{% endmacro %}
 {% block body %}
     {# {{dump(object)}} #}
     {% if object.status == "ok" %}
         <div class="container">
             {% set color = _self.airQualityColorSetter(object.data.aqi)%}
-            <div class="d-flex mb-2">
-                <div class="text-white p-5 mr-3 border rounded" style="background-color: {{color|trim}}">
-                    <h1 class="">{{object.data.aqi}}</h1>
-                </div>
-                <div class="align-middle my-auto w-100">
-                    <h1 class="align-middle my-auto ">{{object.data.city.name}}</h1>
-                    <br>
-                    <em class="">Updated at {{object.data.time.s}}</em>
-                </div>
-            </div>
+            {{_self.displayMain(object, color)}}
             {{_self.airQualityDescription(object.data.aqi, color)}}
             {{_self.setGases(object.data.iaqi)}}
             {{_self.setWeather(object.data.iaqi)}}
-            <em class="float-right mt-3 mb-5">
-                Source from: 
-                <a class="text-decoration-none" 
-                    href="{{object.data.city.url}}">{{object.data.city.url}}
-                </a>
-            </em>
+            {{_self.displayUrlSource(object.data.city.url)}}
         </div>
     {% elseif object.status == "error" %}
         <div class="text-center">
