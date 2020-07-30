@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Service\AirQualityRequest;
+use App\Service\AirQualityFinder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,17 +13,17 @@ class HomeController extends AbstractController
 
     public function index(Request $request)
     {
-        
         return $this->render('home/index.html.twig', [
            
         ]);
     }
 
-    public function search(Request $request, AirQualityRequest $airQualityRequest)
+    public function search(Request $request, AirQualityFinder $airQualityFinder)
     {
         $query = $request->request->get('search');
-        $json = $airQualityRequest($query);
+        $json = $airQualityFinder($query);
         $data = json_decode($json);
+    
         return $this->render('home/search.html.twig', [
             'object' => $data
         ]);

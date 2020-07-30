@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Service;
+
 use Symfony\Component\HttpClient\HttpClient;
 
-class AirQualityRequest {
+class AirQualityFinder {
     public function __invoke(string $city)
     {
         $client = HttpClient::create();
@@ -15,6 +16,7 @@ class AirQualityRequest {
         // $contentType = 'application/json'
         $content = $response->getContent();
         // $content = '{"id":521583, "name":"symfony-docs", ...}'
+
         return $content;
     }
 }
