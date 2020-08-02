@@ -23,7 +23,6 @@ class HomeController extends AbstractController
         $query = $request->request->get('search');
         $json = $airQualityFinder($query);
         $data = json_decode($json);
-    
         return $this->render('home/search.html.twig', [
             'object' => $data
         ]);
