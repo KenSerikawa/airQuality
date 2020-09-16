@@ -235,6 +235,9 @@
             {{_self.setWeather(object.data.iaqi)}}
             {{_self.displayUrlSource(object.data.city.url)}}
         </div>
+        <div id="map" class="h-100 w-100 border-rounded rounded mb-5" ><div>
+        <input type="hidden" id="lat" value="{{object.data.city.geo[0]}}">
+        <input type="hidden" id="long" value="{{object.data.city.geo[1]}}">
     {% elseif object.status == "error" %}
         <div class="text-center">
             <h1 class="display-2">That's bad!</h1>
@@ -242,8 +245,6 @@
             <p>Maybe there's no form to calculate the data, or not resources to know it.</p>
             <em>Message: {{object.data}}</em>
         </div>
-        <div id="map" style="height:100%;"></div>
-
     {% endif %}
     {% block stylesheets %}
         <style>
@@ -253,19 +254,23 @@
         </style>
     {% endblock %}
     {% block javascripts %}
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEQGPMeAPIKEY9zgHRZoR-zsmwYobl4ebKRbAEY&callback=initMap"
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEQGPMe9zgHRZoR-zsmwYobl4ebKRbAEY&callback=initMap"
         type="text/javascript"></script>
     <script>	
     var map;
+    var latitude = parseFloat(document.getElementById('lat').value);
+    var long = parseFloat(document.getElementById('long').value);
+    console.log(latitude, long)
+
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 43.5293, lng: -5.6773},
+            center: {lat: latitude, lng: long},
             zoom: 13,
         });
         var marker = new google.maps.Marker({
-            position: {lat: 43.542194, lng: -5.676875},
+            position: {lat: latitude, lng: long},
             map: map,
-        title: 'Acuario de Gijón'
+        title: 'Your city'
         });
     }
     </script>
