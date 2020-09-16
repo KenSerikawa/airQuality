@@ -108,12 +108,13 @@
 {% endmacro %}
 {% macro setGases(iaqi) %}
     <div class="container mt-5 pr-3 pl-3 border rounded box-shadow">
-    {% set firstRowExists = false %}
-    {% set border = '' %}
+        <div class="row p-2">
+            <div class="col-12">
+                <h4>Air particles</h4>
+            </div>
+        </div>
         {% if iaqi.pm25.v is defined %}
-            {% set firstRowExists = true %}
-            {% set border = 'border-top' %}
-            <div class="row p-3">
+            <div class="row border-top p-3">
                 <div class="col-6">
                     <h6>PM2.5</h6>
                 </div>
@@ -123,7 +124,7 @@
             </div>
         {% endif %}
         {% if iaqi.pm10.v is defined %}
-            <div class="row {{border}} p-3">
+            <div class="row border-top p-3">
                 <div class="col-6">
                     <h6>PM10</h6>
                 </div>
@@ -131,8 +132,6 @@
                     <h6>{{iaqi.pm10.v}}</h6>
                 </div>
             </div>
-            {% set firstRowExists = true %}
-            {% set border = 'border-top' %}
         {% endif %}
         {% if iaqi.o3.v is defined %}
             <div class="row border-top p-3">
