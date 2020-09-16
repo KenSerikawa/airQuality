@@ -15,7 +15,7 @@ class CityListSender {
           $cities[] = $data[0];
         }
         fclose($listHandler);
-
+        sort($cities);
         return $cities;
     }
 }
