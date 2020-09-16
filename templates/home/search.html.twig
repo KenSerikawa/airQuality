@@ -226,7 +226,9 @@
         </div>
     {% elseif object.status == "error" %}
         <div class="text-center">
-            <h1> ERROR CITY NOT FOUND </h1>
+            <h1 class="display-2">That's bad!</h1>
+            <h1>The city you're trying to find is not registered on <a href="https://aqicn.org/">aqicn.org</a></h1>
+            <p>Maybe there's no form to calculate the data, or not resources to know it.</p>
             <em>Message: {{object.data}}</em>
         </div>
         <div id="map" style="height:100%;"></div>
