@@ -214,7 +214,7 @@
     </em>
 {% endmacro %}
 {% block body %}
-    {# {{dump(object)}} #}
+    {{_self.displayNavbar()}}
     {% if object.status == "ok" %}
         <div class="container">
             {% set color = _self.airQualityColorSetter(object.data.aqi)%}
@@ -232,6 +232,13 @@
         <div id="map" style="height:100%;"></div>
 
     {% endif %}
+    {% block stylesheets %}
+        <style>
+            body {
+                background-color: white !important;
+            }
+        </style>
+    {% endblock %}
     {% block javascripts %}
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEQGPMeAPIKEY9zgHRZoR-zsmwYobl4ebKRbAEY&callback=initMap"
         type="text/javascript"></script>

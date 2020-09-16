@@ -3,14 +3,46 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-    <div class="container h-75">
-        <div class="row h-75">
+    <div class="container h-100">
+        <div class="row h-25"></div>
+        <div class="row h-50">
             <div class="col-4 align-middle my-auto text-right">
-                <i class="text-primary fas fa-cloud fa-5x"></i>
+                <img class="img-fluid" src="{{asset('/images/cloud_data.svg')}}">
             </div>
-            <div class="col-6  align-middle my-auto text-left">
-                <h4 class="text-primary"><em>AirQuality</em> is a basic example for learning purposes, try to find your city by typing the name and clicking on submit...</h4>
+            <div class="col-8  align-middle my-auto text-left">
+                <h4 class="display-3 silver"><em>AirQuality</em></h4>
+                <br>
+                <p class="silver h5">
+                An example of a simple website where you can check the air quality 
+                of most cities all over the world and it's made for learning purposes,
+                type your city and submit!
+                </p>
+                <div class="w-100 text-center mt-4">
+                    {{_self.displaySearchForm()}}
+                </div>
             </div>
         </div>
+{#         <div class="row h-25">
+            <div class="col-4"></div>
+            <div class="col-4">
+
+            </div>
+            <div class="col-4"></div>
+        </div> #}
     </div>
 {% endblock %}
+
+{% block stylesheets %}
+<style> 
+input {
+    background-color:transparent !important;
+    border: transparent !important;
+}
+</style>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{asset('js/canvas-animation.js')}}"type="text/javascript"></script>
+{% endblock %}
+
+
