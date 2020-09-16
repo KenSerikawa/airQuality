@@ -3,8 +3,8 @@
 {% block title %}{% endblock %}
 {% macro displayMain(object, color) %}
      <div class="d-flex mb-2">
-        <div class="text-white p-5 mr-3 border rounded" style="background-color: {{color|trim}}">
-            <h1 class="">{{object.data.aqi}}</h1>
+        <div class="text-white p-4 mr-3 border rounded" style="background-color: {{color|trim}}">
+            <h1 class="display-4">{{object.data.aqi}}</h1>
         </div>
         <div class="align-middle my-auto w-100">
             <h1 class="align-middle my-auto ">{{object.data.city.name}}</h1>

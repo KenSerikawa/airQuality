@@ -19,6 +19,30 @@ h6, h4 {
 .silver {
     color: #949494;
 }
+.submit-button {
+    position: relative;
+    animation: submit-animation 1s linear infinite;
+}
+@keyframes submit-animation {
+    0% {
+        left: 0px;
+    }
+    20% {
+        left: 2px;
+    }
+    40% {
+        left: 4px;
+    }
+    60% {
+        left: 6px;
+    }
+    80% {
+        left: 8px;
+    }
+    100% {
+        left: 10px;
+    }
+}
 .footer {
     position: fixed;
     bottom: 0;

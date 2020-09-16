@@ -17,7 +17,7 @@
     <div class="" id="navbarSupportedContent" style="position:relative">
         <form action="{{path('search')}}" method="POST" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2 input-lg" style="" list="cities_list" type="search" name="search" placeholder="City" aria-label="Search">
-            <button class="btn my-2 my-sm-0 silver" type="submit" name="submit">
+            <button class="btn my-2 my-sm-0 silver submit-button" type="submit" name="submit">
                 <i class="fas fa-arrow-right fa-lg"></i>
             </button>
         </form>
@@ -45,7 +45,7 @@
         <canvas id="drawing-surface" style="position:absolute;"></canvas>
         {{_self.displayDatalist(cities)}}
 
-        <div class="container mb-5 pb-5 h-100">
+        <div class="container pb-5 h-100">
             {% block body %}{% endblock %}
         </div>
 
