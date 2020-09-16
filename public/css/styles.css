@@ -1,16 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
 html, body {
     min-height: 100%;
     height: 100%;
 }
 body {
-    background-color: #f6f6f6;
+    font-family: 'Playfair Display', serif;
+    background-color: dimgrey;
 }
 h6, h4 {
     vertical-align: middle;
     margin-top: auto !important;
     margin-bottom: auto !important;
 }
-
+.icon {
+    fill: silver;
+}
+.silver {
+    color: #949494;
+}
 .footer {
     position: fixed;
     bottom: 0;
