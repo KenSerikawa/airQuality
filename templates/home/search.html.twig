@@ -235,7 +235,7 @@
             {{_self.setWeather(object.data.iaqi)}}
             {{_self.displayUrlSource(object.data.city.url)}}
         </div>
-        <div id="map" class="h-100 w-100 border-rounded rounded mb-5" ><div>
+        <div id="map" class="h-100 w-100 border-rounded rounded mb-5 box-shadow" ><div>
         <input type="hidden" id="lat" value="{{object.data.city.geo[0]}}">
         <input type="hidden" id="long" value="{{object.data.city.geo[1]}}">
     {% elseif object.status == "error" %}
