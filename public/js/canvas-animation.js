@@ -11,12 +11,7 @@ function Viewport() {
         resizeCanvas();
     }
     var drawingSurface = document.getElementById("drawing-surface").getContext("2d");
-    var image = new Image();
-    image.src = "background.jpg";
-    image.onload = function () {
-        me.backgroundImage = image;
-        me.doPaint = true;
-    }
+
     me.doPaint = true;
     function drawBackgroundImage() {
     if (me.backgroundImage) {
@@ -62,11 +57,7 @@ function CloudParticle() {
         me.location = { x: 0, y: Random(window.innerHeight) };
     };
     me.reset();
-    var image = new Image();
-    image.src = "water.png";
-    image.onload = function () {
-        me.backgroundImage = image;
-    }
+
     me.move = function () {
         if (me.location.x > window.innerWidth || me.location.x < 0 || me.location.y > window.innerHeight) {
             me.reset();
