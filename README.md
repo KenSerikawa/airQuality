@@ -1,4 +1,5 @@
 ##  Air Quality 
+### APIRest implementation with a simple template for displaying data of each city available
 1. Clone repo 
 2. Launch server:
 ```
