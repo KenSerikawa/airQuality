@@ -15,7 +15,7 @@ final class GetAirQualityIndexController extends AbstractController
         $this->cities = $cityListSender->__invoke();
     }
     
-    public function index()
+    public function __invoke()
     {
         return $this->render('home/index.html.twig', [
             'cities' => $this->cities 
