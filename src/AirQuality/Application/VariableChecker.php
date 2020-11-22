@@ -4,7 +4,7 @@ namespace App\AirQuality\Application;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
-class VariableChecker extends AbstractExtension
+final class VariableChecker extends AbstractExtension
 {
     public function getFilters()
     {

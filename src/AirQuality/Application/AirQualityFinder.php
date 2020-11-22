@@ -4,7 +4,7 @@ namespace App\AirQuality\Application;
 
 use Symfony\Component\HttpClient\HttpClient;
 
-class AirQualityFinder {
+final class AirQualityFinder {
     public function __invoke(string $city)
     {
         $client = HttpClient::create();
