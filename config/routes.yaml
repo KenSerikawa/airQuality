@@ -1,9 +1,9 @@
 app.index:
     path: /
     controller: App\AirQuality\Infrastructure\Controller\GetAirQualityIndexController
-    method: GET
+    methods: [GET]
 
 app.search:
     path: /search
     controller: App\AirQuality\Infrastructure\Controller\GetCityAirQualityController
-    method: POST
+    methods: [POST]
