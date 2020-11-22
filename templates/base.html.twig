@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% macro displayNavbar() %}
     <nav class="navbar ">
-        <a class="navbar-brand silver" href="{{path('index')}}">
+        <a class="navbar-brand silver" href="{{path('app.index')}}">
             <i class="fas fa-cloud"></i>
             AirQuality
         </a>
@@ -15,7 +15,7 @@
 
 {% macro displaySearchForm() %}
     <div class="" id="navbarSupportedContent" style="position:relative">
-        <form action="{{path('search')}}" method="POST" class="form-inline my-2 my-lg-0">
+        <form action="{{path('app.search')}}" method="POST" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2 input-lg" style="" list="cities_list" type="search" name="search" placeholder="City" aria-label="Search">
             <button class="btn my-2 my-sm-0 silver submit-button" type="submit" name="submit">
                 <i class="fas fa-arrow-right fa-lg"></i>
