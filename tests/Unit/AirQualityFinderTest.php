@@ -1,9 +1,10 @@
 <?php
 
 declare(strict_types=1);
+
 namespace App\Tests\Unit;
 
-use App\Service\AirQualityFinder;
+use App\AirQuality\Application\AirQualityFinder;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class AirQualityFinderTest extends KernelTestCase
