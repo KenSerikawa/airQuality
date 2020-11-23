@@ -224,6 +224,13 @@
         </a>
     </em>
 {% endmacro %}
+{% block stylesheets %}
+    <style>
+        body {
+            background-color: white !important;
+        }
+    </style>
+{% endblock %}
 {% block body %}
     {{_self.displayNavbar()}}
     {% if object.status == "ok" %}
@@ -246,33 +253,27 @@
             <em>Message: {{object.data}}</em>
         </div>
     {% endif %}
-    {% block stylesheets %}
-        <style>
-            body {
-                background-color: white !important;
-            }
-        </style>
-    {% endblock %}
-    {% block javascripts %}
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEQGPMe9zgHRZoR-zsmwYobl4ebKRbAEY&callback=initMap"
-        type="text/javascript"></script>
-    <script>	
-    var map;
-    var latitude = parseFloat(document.getElementById('lat').value);
-    var long = parseFloat(document.getElementById('long').value);
-    console.log(latitude, long)
+{% endblock %}
 
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: latitude, lng: long},
-            zoom: 13,
-        });
-        var marker = new google.maps.Marker({
-            position: {lat: latitude, lng: long},
-            map: map,
-        title: 'Your city'
-        });
-    }
-    </script>
-    {% endblock %}
+{% block javascripts %}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEQGPMe9zgHRZoR-zsmwYobl4ebKRbAEY&callback=initMap"
+    type="text/javascript"></script>
+<script>	
+var map;
+var latitude = parseFloat(document.getElementById('lat').value);
+var long = parseFloat(document.getElementById('long').value);
+console.log(latitude, long)
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: latitude, lng: long},
+        zoom: 13,
+    });
+    var marker = new google.maps.Marker({
+        position: {lat: latitude, lng: long},
+        map: map,
+    title: 'Your city'
+    });
+}
+</script>
 {% endblock %}
